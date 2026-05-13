@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Urban Sport Talent</title>
+  <meta name="description" content="Plateforme sociale sport et talent mobile-first" />
+
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <style>
+    :root {
+      --bg: #050505;
+      --card: #111111;
+      --border: #1e1e1e;
+      --accent: #c6ff00;
+      --text: #ffffff;
+      --muted: #9ca3af;
+    }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      overflow-x: hidden;
+      font-family: Inter, sans-serif;
+    }
+
+    .video-card {
+      scroll-snap-align: start;
+      height: 100vh;
+    }
+
+    .feed-container {
+      scroll-snap-type: y mandatory;
+      overflow-y: scroll;
+      height: 100vh;
+    }
+
+    .glass {
+      background: rgba(255,255,255,0.05);
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255,255,255,0.08);
+    }
+
+    .gradient-overlay {
+      background: linear-gradient(
+        to top,
+        rgba(0,0,0,0.9),
+        rgba(0,0,0,0.1)
+      );
+    }
+
+    ::-webkit-scrollbar {
+      display: none;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- MOBILE SOCIAL FEED -->
+  <main class="feed-container md:flex md:overflow-hidden">
+
+    <!-- LEFT SIDEBAR DESKTOP -->
+    <aside class="hidden md:flex md:w-72 md:flex-col md:justify-between border-r border-neutral-800 p-6 bg-black">
+      <div>
+        <h1 class="text-3xl font-black tracking-tight mb-10">
+          URBAN<span class="text-lime-300">SPORT</span>
+        </h1>
+
+        <nav class="space-y-4 text-lg">
+          <a href="#" class="block text-white font-semibold">Accueil</a>
+          <a href="#" class="block text-neutral-400 hover:text-white">Explorer</a>
+          <a href="#" class="block text-neutral-400 hover:text-white">Challenges</a>
+          <a href="#" class="block text-neutral-400 hover:text-white">Messages</a>
+          <a href="#" class="block text-neutral-400 hover:text-white">Profil</a>
+        </nav>
+      </div>
+
+      <button class="bg-lime-300 text-black font-bold py-3 rounded-2xl hover:scale-105 transition">
+        Upload Talent
+      </button>
+    </aside>
+
+    <!-- FEED -->
+    <section class="flex-1 overflow-y-scroll snap-y snap-mandatory h-screen">
+
+      <!-- CARD 1 -->
+      <article class="video-card relative flex items-end bg-cover bg-center"
+        style="background-image:url('https://images.unsplash.com/photo-1517649763962-0c623066013b?q=80&w=1974&auto=format&fit=crop');">
+
+        <div class="absolute inset-0 gradient-overlay"></div>
+
+        <div class="relative z-10 p-6 w-full flex justify-between items-end">
+
+          <div class="max-w-sm space-y-3">
+            <div class="flex items-center gap-3">
+              <img
+                src="https://i.pravatar.cc/100?img=12"
+                class="w-12 h-12 rounded-full border-2 border-white"
+              />
+              <div>
+                <h2 class="font-bold">@yanisballer</h2>
+                <p class="text-sm text-neutral-300">Montpellier • Football</p>
+              </div>
+            </div>
+
+            <h3 class="text-3xl font-black leading-tight">
+              STREET TO PRO
+            </h3>
+
+            <p class="text-neutral-200 text-sm leading-relaxed">
+              Showcase de skills urbains. Publication d'un nouveau challenge freestyle.
+            </p>
+
+            <div class="flex gap-2 flex-wrap pt-2">
+              <span class="glass px-3 py-1 rounded-full text-xs">#football</span>
+              <span class="glass px-3 py-1 rounded-full text-xs">#street</span>
+              <span class="glass px-3 py-1 rounded-full text-xs">#talent</span>
+            </div>
+          </div>
+
+          <!-- ACTIONS -->
+          <div class="flex flex-col items-center gap-6 pb-10">
+            <button class="glass p-4 rounded-full hover:scale-110 transition">
+              ❤️
+            </button>
+
+            <button class="glass p-4 rounded-full hover:scale-110 transition">
+              💬
+            </button>
+
+            <button class="glass p-4 rounded-full hover:scale-110 transition">
+              ↗
+            </button>
+          </div>
+        </div>
+      </article>
+
+      <!-- CARD 2 -->
+      <article class="video-card relative flex items-end bg-cover bg-center"
+        style="background-image:url('https://images.unsplash.com/photo-1517466787929-bc90951d0974?q=80&w=1974&auto=format&fit=crop');">
+
+        <div class="absolute inset-0 gradient-overlay"></div>
+
+        <div class="relative z-10 p-6 w-full flex justify-between items-end">
+
+          <div class="max-w-sm space-y-3">
+            <div class="flex items-center gap-3">
+              <img
+                src="https://i.pravatar.cc/100?img=25"
+                class="w-12 h-12 rounded-full border-2 border-white"
+              />
+              <div>
+                <h2 class="font-bold">@nabilspeed</h2>
+                <p class="text-sm text-neutral-300">Paris • Basket</p>
+              </div>
+            </div>
+
+            <h3 class="text-3xl font-black leading-tight">
+              NEXT GENERATION
+            </h3>
+
+            <p class="text-neutral-200 text-sm leading-relaxed">
+              Sessions nocturnes et highlights basket urbain filmés mobile-first.
+            </p>
+
+            <div class="flex gap-2 flex-wrap pt-2">
+              <span class="glass px-3 py-1 rounded-full text-xs">#basket</span>
+              <span class="glass px-3 py-1 rounded-full text-xs">#urban</span>
+              <span class="glass px-3 py-1 rounded-full text-xs">#reels</span>
+            </div>
+          </div>
+
+          <div class="flex flex-col items-center gap-6 pb-10">
+            <button class="glass p-4 rounded-full hover:scale-110 transition">
+              ❤️
+            </button>
+
+            <button class="glass p-4 rounded-full hover:scale-110 transition">
+              💬
+            </button>
+
+            <button class="glass p-4 rounded-full hover:scale-110 transition">
+              ↗
+            </button>
+          </div>
+        </div>
+      </article>
+    </section>
+
+    <!-- RIGHT SIDEBAR DESKTOP -->
+    <aside class="hidden xl:flex w-80 border-l border-neutral-800 bg-black p-6 flex-col gap-6">
+
+      <div>
+        <h3 class="font-bold text-xl mb-4">Trending</h3>
+
+        <div class="space-y-3">
+          <div class="glass p-4 rounded-2xl">
+            <p class="font-semibold">#StreetFootball</p>
+            <p class="text-sm text-neutral-400">+14k publications</p>
+          </div>
+
+          <div class="glass p-4 rounded-2xl">
+            <p class="font-semibold">#UrbanLeague</p>
+            <p class="text-sm text-neutral-400">+9k publications</p>
+          </div>
+        </div>
+      </div>
+
+      <div>
+        <h3 class="font-bold text-xl mb-4">Talents à suivre</h3>
+
+        <div class="space-y-4">
+          <div class="flex items-center gap-3">
+            <img src="https://i.pravatar.cc/100?img=45" class="w-12 h-12 rounded-full" />
+            <div>
+              <p class="font-semibold">@sami_skillz</p>
+              <p class="text-sm text-neutral-400">Freestyle</p>
+            </div>
+          </div>
+
+          <div class="flex items-center gap-3">
+            <img src="https://i.pravatar.cc/100?img=52" class="w-12 h-12 rounded-full" />
+            <div>
+              <p class="font-semibold">@urbanqueen</p>
+              <p class="text-sm text-neutral-400">Basketball</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </aside>
+  </main>
+
+  <!-- MOBILE NAVBAR -->
+  <nav class="fixed bottom-0 left-0 right-0 md:hidden z-50 border-t border-neutral-800 bg-black/90 backdrop-blur-xl">
+    <div class="flex justify-around items-center py-4 text-sm">
+      <button class="text-lime-300 font-semibold">Accueil</button>
+      <button class="text-neutral-400">Explore</button>
+
+      <button class="bg-lime-300 text-black px-4 py-2 rounded-2xl font-bold -mt-8 shadow-2xl">
+        + Upload
+      </button>
+
+      <button class="text-neutral-400">Messages</button>
+      <button class="text-neutral-400">Profil</button>
+    </div>
+  </nav>
+
+</body>
+</html>
