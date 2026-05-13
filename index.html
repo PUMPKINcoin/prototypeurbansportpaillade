@@ -3,248 +3,413 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Urban Sport Talent</title>
-  <meta name="description" content="Plateforme sociale sport et talent mobile-first" />
+
+  <title>UrbanSport — Social Sport Platform</title>
+
+  <meta name="description" content="Plateforme sociale premium dédiée aux talents sportifs urbains." />
+  <meta name="theme-color" content="#050505" />
 
   <script src="https://cdn.tailwindcss.com"></script>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
 
   <style>
     :root {
       --bg: #050505;
-      --card: #111111;
-      --border: #1e1e1e;
+      --card: rgba(255,255,255,0.06);
+      --border: rgba(255,255,255,0.08);
       --accent: #c6ff00;
       --text: #ffffff;
       --muted: #9ca3af;
     }
 
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
     body {
       background: var(--bg);
       color: var(--text);
-      overflow-x: hidden;
-      font-family: Inter, sans-serif;
+      font-family: 'Inter', sans-serif;
+      overflow: hidden;
     }
 
-    .video-card {
-      scroll-snap-align: start;
+    .feed-scroll {
       height: 100vh;
-    }
-
-    .feed-container {
-      scroll-snap-type: y mandatory;
       overflow-y: scroll;
+      scroll-snap-type: y mandatory;
+      scrollbar-width: none;
+    }
+
+    .feed-scroll::-webkit-scrollbar {
+      display: none;
+    }
+
+    .video-slide {
+      position: relative;
       height: 100vh;
+      scroll-snap-align: start;
+      overflow: hidden;
+    }
+
+    .overlay {
+      position: absolute;
+      inset: 0;
+      background:
+        linear-gradient(to top,
+        rgba(0,0,0,0.95),
+        rgba(0,0,0,0.1));
     }
 
     .glass {
       background: rgba(255,255,255,0.05);
-      backdrop-filter: blur(10px);
+      backdrop-filter: blur(18px);
       border: 1px solid rgba(255,255,255,0.08);
     }
 
-    .gradient-overlay {
-      background: linear-gradient(
-        to top,
-        rgba(0,0,0,0.9),
-        rgba(0,0,0,0.1)
-      );
+    .premium-shadow {
+      box-shadow:
+      0 10px 40px rgba(0,0,0,0.4),
+      0 0 30px rgba(198,255,0,0.08);
     }
 
-    ::-webkit-scrollbar {
-      display: none;
+    .accent-text {
+      color: var(--accent);
+    }
+
+    .hero-gradient {
+      background:
+      radial-gradient(circle at top left,
+      rgba(198,255,0,0.08),
+      transparent 35%),
+      radial-gradient(circle at bottom right,
+      rgba(255,255,255,0.04),
+      transparent 30%);
+    }
+
+    .blur-bg {
+      backdrop-filter: blur(20px);
+      background: rgba(0,0,0,0.55);
+    }
+
+    .hover-scale {
+      transition: all .3s ease;
+    }
+
+    .hover-scale:hover {
+      transform: scale(1.05);
     }
   </style>
 </head>
+
 <body>
 
-  <!-- MOBILE SOCIAL FEED -->
-  <main class="feed-container md:flex md:overflow-hidden">
+<div class="w-full h-screen flex bg-black">
 
-    <!-- LEFT SIDEBAR DESKTOP -->
-    <aside class="hidden md:flex md:w-72 md:flex-col md:justify-between border-r border-neutral-800 p-6 bg-black">
-      <div>
-        <h1 class="text-3xl font-black tracking-tight mb-10">
-          URBAN<span class="text-lime-300">SPORT</span>
+  <!-- SIDEBAR -->
+  <aside class="hidden lg:flex w-72 border-r border-white/10 flex-col justify-between p-8 hero-gradient">
+
+    <div>
+      <div class="mb-14">
+        <h1 class="text-4xl font-black tracking-tight leading-none">
+          URBAN
+          <span class="accent-text block">SPORT</span>
         </h1>
 
-        <nav class="space-y-4 text-lg">
-          <a href="#" class="block text-white font-semibold">Accueil</a>
-          <a href="#" class="block text-neutral-400 hover:text-white">Explorer</a>
-          <a href="#" class="block text-neutral-400 hover:text-white">Challenges</a>
-          <a href="#" class="block text-neutral-400 hover:text-white">Messages</a>
-          <a href="#" class="block text-neutral-400 hover:text-white">Profil</a>
-        </nav>
+        <p class="text-sm text-neutral-400 mt-4 leading-relaxed">
+          Plateforme sociale premium dédiée aux talents sportifs urbains.
+        </p>
       </div>
 
-      <button class="bg-lime-300 text-black font-bold py-3 rounded-2xl hover:scale-105 transition">
-        Upload Talent
+      <nav class="space-y-3">
+
+        <button class="w-full glass premium-shadow rounded-2xl px-5 py-4 text-left font-semibold hover-scale">
+          🏠 Accueil
+        </button>
+
+        <button class="w-full rounded-2xl px-5 py-4 text-left text-neutral-400 hover:bg-white/5 transition">
+          🔍 Explorer
+        </button>
+
+        <button class="w-full rounded-2xl px-5 py-4 text-left text-neutral-400 hover:bg-white/5 transition">
+          🏆 Challenges
+        </button>
+
+        <button class="w-full rounded-2xl px-5 py-4 text-left text-neutral-400 hover:bg-white/5 transition">
+          💬 Messages
+        </button>
+
+        <button class="w-full rounded-2xl px-5 py-4 text-left text-neutral-400 hover:bg-white/5 transition">
+          👤 Profil
+        </button>
+      </nav>
+    </div>
+
+    <div class="space-y-4">
+
+      <button class="w-full bg-lime-300 text-black font-black py-4 rounded-2xl hover-scale premium-shadow">
+        + Upload Talent
       </button>
-    </aside>
+
+      <div class="glass rounded-3xl p-4 flex items-center gap-4">
+        <img
+          src="https://i.pravatar.cc/100?img=65"
+          class="w-14 h-14 rounded-2xl"
+        />
+
+        <div>
+          <p class="font-bold">@urbancreator</p>
+          <p class="text-sm text-neutral-400">Football • Paris</p>
+        </div>
+      </div>
+    </div>
+  </aside>
+
+  <!-- MAIN FEED -->
+  <main class="flex-1 relative overflow-hidden">
+
+    <!-- TOP BAR -->
+    <header class="absolute top-0 left-0 right-0 z-50 px-4 py-4 md:px-8">
+      <div class="blur-bg border border-white/10 rounded-3xl px-6 py-4 flex items-center justify-between">
+
+        <div>
+          <h2 class="font-black text-lg md:text-2xl">
+            Discover Urban Talents
+          </h2>
+        </div>
+
+        <div class="hidden md:flex items-center gap-3">
+          <button class="glass px-5 py-3 rounded-2xl hover-scale">
+            Trending
+          </button>
+
+          <button class="bg-lime-300 text-black font-bold px-5 py-3 rounded-2xl hover-scale">
+            Join Platform
+          </button>
+        </div>
+      </div>
+    </header>
 
     <!-- FEED -->
-    <section class="flex-1 overflow-y-scroll snap-y snap-mandatory h-screen">
+    <section class="feed-scroll">
 
-      <!-- CARD 1 -->
-      <article class="video-card relative flex items-end bg-cover bg-center"
-        style="background-image:url('https://images.unsplash.com/photo-1517649763962-0c623066013b?q=80&w=1974&auto=format&fit=crop');">
+      <!-- HERO SLIDE -->
+      <article class="video-slide flex items-center justify-center hero-gradient px-6">
 
-        <div class="absolute inset-0 gradient-overlay"></div>
+        <div class="max-w-5xl w-full grid lg:grid-cols-2 gap-12 items-center">
 
-        <div class="relative z-10 p-6 w-full flex justify-between items-end">
-
-          <div class="max-w-sm space-y-3">
-            <div class="flex items-center gap-3">
-              <img
-                src="https://i.pravatar.cc/100?img=12"
-                class="w-12 h-12 rounded-full border-2 border-white"
-              />
-              <div>
-                <h2 class="font-bold">@yanisballer</h2>
-                <p class="text-sm text-neutral-300">Montpellier • Football</p>
-              </div>
-            </div>
-
-            <h3 class="text-3xl font-black leading-tight">
-              STREET TO PRO
-            </h3>
-
-            <p class="text-neutral-200 text-sm leading-relaxed">
-              Showcase de skills urbains. Publication d'un nouveau challenge freestyle.
+          <div class="space-y-8">
+            <p class="uppercase tracking-[0.3em] text-sm accent-text font-bold">
+              Social Sport Platform
             </p>
 
-            <div class="flex gap-2 flex-wrap pt-2">
-              <span class="glass px-3 py-1 rounded-full text-xs">#football</span>
-              <span class="glass px-3 py-1 rounded-full text-xs">#street</span>
-              <span class="glass px-3 py-1 rounded-full text-xs">#talent</span>
+            <h2 class="text-5xl lg:text-7xl font-black leading-[0.9] tracking-tight">
+              THE NEXT
+              GENERATION
+              OF SPORTS
+              TALENTS.
+            </h2>
+
+            <p class="text-lg text-neutral-400 max-w-xl leading-relaxed">
+              Une plateforme immersive pensée mobile-first pour découvrir,
+              publier et promouvoir les talents sportifs urbains.
+            </p>
+
+            <div class="flex flex-wrap gap-4 pt-4">
+              <button class="bg-lime-300 text-black font-black px-8 py-4 rounded-2xl hover-scale premium-shadow">
+                Rejoindre
+              </button>
+
+              <button class="glass px-8 py-4 rounded-2xl hover-scale">
+                Explorer Feed
+              </button>
             </div>
           </div>
 
-          <!-- ACTIONS -->
-          <div class="flex flex-col items-center gap-6 pb-10">
-            <button class="glass p-4 rounded-full hover:scale-110 transition">
-              ❤️
-            </button>
+          <div class="relative hidden lg:flex justify-center">
 
-            <button class="glass p-4 rounded-full hover:scale-110 transition">
-              💬
-            </button>
+            <div class="w-[320px] h-[640px] rounded-[40px] overflow-hidden border border-white/10 glass premium-shadow relative">
 
-            <button class="glass p-4 rounded-full hover:scale-110 transition">
-              ↗
-            </button>
+              <img
+                src="https://images.unsplash.com/photo-1517649763962-0c623066013b?q=80&w=1974&auto=format&fit=crop"
+                class="w-full h-full object-cover"
+              />
+
+              <div class="overlay"></div>
+
+              <div class="absolute bottom-0 left-0 right-0 p-6 z-10">
+                <div class="flex items-center gap-3 mb-4">
+                  <img
+                    src="https://i.pravatar.cc/100?img=12"
+                    class="w-12 h-12 rounded-full border-2 border-white"
+                  />
+
+                  <div>
+                    <h3 class="font-bold">@yanisballer</h3>
+                    <p class="text-sm text-neutral-300">Football • Montpellier</p>
+                  </div>
+                </div>
+
+                <h4 class="text-2xl font-black mb-2">
+                  STREET TO PRO
+                </h4>
+
+                <p class="text-sm text-neutral-300">
+                  New freestyle challenge online.
+                </p>
+              </div>
+            </div>
           </div>
         </div>
       </article>
 
-      <!-- CARD 2 -->
-      <article class="video-card relative flex items-end bg-cover bg-center"
-        style="background-image:url('https://images.unsplash.com/photo-1517466787929-bc90951d0974?q=80&w=1974&auto=format&fit=crop');">
+      <!-- TIKTOK FEED ITEMS -->
 
-        <div class="absolute inset-0 gradient-overlay"></div>
-
-        <div class="relative z-10 p-6 w-full flex justify-between items-end">
-
-          <div class="max-w-sm space-y-3">
-            <div class="flex items-center gap-3">
-              <img
-                src="https://i.pravatar.cc/100?img=25"
-                class="w-12 h-12 rounded-full border-2 border-white"
-              />
-              <div>
-                <h2 class="font-bold">@nabilspeed</h2>
-                <p class="text-sm text-neutral-300">Paris • Basket</p>
-              </div>
-            </div>
-
-            <h3 class="text-3xl font-black leading-tight">
-              NEXT GENERATION
-            </h3>
-
-            <p class="text-neutral-200 text-sm leading-relaxed">
-              Sessions nocturnes et highlights basket urbain filmés mobile-first.
-            </p>
-
-            <div class="flex gap-2 flex-wrap pt-2">
-              <span class="glass px-3 py-1 rounded-full text-xs">#basket</span>
-              <span class="glass px-3 py-1 rounded-full text-xs">#urban</span>
-              <span class="glass px-3 py-1 rounded-full text-xs">#reels</span>
-            </div>
+      <article class="video-slide bg-black flex items-center justify-center p-4 md:p-10">
+        <div class="glass premium-shadow rounded-[32px] overflow-hidden w-full max-w-md p-4">
+          <div class="mb-4">
+            <p class="text-xs uppercase tracking-[0.3em] accent-text mb-2">Featured Creator</p>
+            <h3 class="text-3xl font-black">@alex.goetz</h3>
+            <p class="text-sm text-neutral-400">Urban Football Creator</p>
           </div>
 
-          <div class="flex flex-col items-center gap-6 pb-10">
-            <button class="glass p-4 rounded-full hover:scale-110 transition">
-              ❤️
-            </button>
-
-            <button class="glass p-4 rounded-full hover:scale-110 transition">
-              💬
-            </button>
-
-            <button class="glass p-4 rounded-full hover:scale-110 transition">
-              ↗
-            </button>
-          </div>
+          <blockquote class="tiktok-embed" cite="https://www.tiktok.com/@alex.goetz/video/7483186267425885495" data-video-id="7483186267425885495" style="max-width: 605px;min-width: 325px;">
+            <section></section>
+          </blockquote>
         </div>
       </article>
+
+      <article class="video-slide bg-black flex items-center justify-center p-4 md:p-10">
+        <div class="glass premium-shadow rounded-[32px] overflow-hidden w-full max-w-md p-4">
+          <blockquote class="tiktok-embed" cite="https://www.tiktok.com/@alex.goetz/video/7486959065617157381" data-video-id="7486959065617157381" style="max-width: 605px;min-width: 325px;">
+            <section></section>
+          </blockquote>
+        </div>
+      </article>
+
+      <article class="video-slide bg-black flex items-center justify-center p-4 md:p-10">
+        <div class="glass premium-shadow rounded-[32px] overflow-hidden w-full max-w-md p-4">
+          <blockquote class="tiktok-embed" cite="https://www.tiktok.com/@alex.goetz/video/7610825474868006164" data-video-id="7610825474868006164" style="max-width: 605px;min-width: 325px;">
+            <section></section>
+          </blockquote>
+        </div>
+      </article>
+
+      <article class="video-slide bg-black flex items-center justify-center p-4 md:p-10">
+        <div class="glass premium-shadow rounded-[32px] overflow-hidden w-full max-w-md p-4">
+          <blockquote class="tiktok-embed" cite="https://www.tiktok.com/@alex.goetz/video/7575210929944595768" data-video-id="7575210929944595768" style="max-width: 605px;min-width: 325px;">
+            <section></section>
+          </blockquote>
+        </div>
+      </article>
+
+      <article class="video-slide bg-black flex items-center justify-center p-4 md:p-10">
+        <div class="glass premium-shadow rounded-[32px] overflow-hidden w-full max-w-md p-4">
+          <blockquote class="tiktok-embed" cite="https://www.tiktok.com/@alex.goetz/video/7573752171280223499" data-video-id="7573752171280223499" style="max-width: 605px;min-width: 325px;">
+            <section></section>
+          </blockquote>
+        </div>
+      </article>
+
     </section>
 
-    <!-- RIGHT SIDEBAR DESKTOP -->
-    <aside class="hidden xl:flex w-80 border-l border-neutral-800 bg-black p-6 flex-col gap-6">
+    <!-- MOBILE NAV -->
+    <nav class="fixed bottom-0 left-0 right-0 z-50 lg:hidden px-4 pb-4">
+      <div class="blur-bg border border-white/10 rounded-3xl py-4 px-4 flex items-center justify-around">
 
-      <div>
-        <h3 class="font-bold text-xl mb-4">Trending</h3>
+        <button class="text-lime-300 font-semibold text-sm">
+          Accueil
+        </button>
 
-        <div class="space-y-3">
-          <div class="glass p-4 rounded-2xl">
-            <p class="font-semibold">#StreetFootball</p>
-            <p class="text-sm text-neutral-400">+14k publications</p>
-          </div>
+        <button class="text-neutral-400 text-sm">
+          Explore
+        </button>
 
-          <div class="glass p-4 rounded-2xl">
-            <p class="font-semibold">#UrbanLeague</p>
-            <p class="text-sm text-neutral-400">+9k publications</p>
-          </div>
-        </div>
+        <button class="bg-lime-300 text-black px-5 py-3 rounded-2xl font-black -mt-10 premium-shadow">
+          +
+        </button>
+
+        <button class="text-neutral-400 text-sm">
+          Inbox
+        </button>
+
+        <button class="text-neutral-400 text-sm">
+          Profil
+        </button>
       </div>
-
-      <div>
-        <h3 class="font-bold text-xl mb-4">Talents à suivre</h3>
-
-        <div class="space-y-4">
-          <div class="flex items-center gap-3">
-            <img src="https://i.pravatar.cc/100?img=45" class="w-12 h-12 rounded-full" />
-            <div>
-              <p class="font-semibold">@sami_skillz</p>
-              <p class="text-sm text-neutral-400">Freestyle</p>
-            </div>
-          </div>
-
-          <div class="flex items-center gap-3">
-            <img src="https://i.pravatar.cc/100?img=52" class="w-12 h-12 rounded-full" />
-            <div>
-              <p class="font-semibold">@urbanqueen</p>
-              <p class="text-sm text-neutral-400">Basketball</p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </aside>
+    </nav>
   </main>
 
-  <!-- MOBILE NAVBAR -->
-  <nav class="fixed bottom-0 left-0 right-0 md:hidden z-50 border-t border-neutral-800 bg-black/90 backdrop-blur-xl">
-    <div class="flex justify-around items-center py-4 text-sm">
-      <button class="text-lime-300 font-semibold">Accueil</button>
-      <button class="text-neutral-400">Explore</button>
+  <!-- RIGHT PANEL -->
+  <aside class="hidden 2xl:flex w-96 border-l border-white/10 p-8 flex-col gap-8 bg-black hero-gradient">
 
-      <button class="bg-lime-300 text-black px-4 py-2 rounded-2xl font-bold -mt-8 shadow-2xl">
-        + Upload
-      </button>
+    <div>
+      <h3 class="text-2xl font-black mb-6">
+        Trending Topics
+      </h3>
 
-      <button class="text-neutral-400">Messages</button>
-      <button class="text-neutral-400">Profil</button>
+      <div class="space-y-4">
+
+        <div class="glass rounded-3xl p-5 hover-scale cursor-pointer">
+          <p class="font-bold text-lg">#StreetFootball</p>
+          <p class="text-sm text-neutral-400 mt-1">14.3k publications</p>
+        </div>
+
+        <div class="glass rounded-3xl p-5 hover-scale cursor-pointer">
+          <p class="font-bold text-lg">#UrbanLeague</p>
+          <p class="text-sm text-neutral-400 mt-1">9.1k publications</p>
+        </div>
+
+        <div class="glass rounded-3xl p-5 hover-scale cursor-pointer">
+          <p class="font-bold text-lg">#FreestyleChallenge</p>
+          <p class="text-sm text-neutral-400 mt-1">6.8k publications</p>
+        </div>
+      </div>
     </div>
-  </nav>
+
+    <div>
+      <h3 class="text-2xl font-black mb-6">
+        Suggested Talents
+      </h3>
+
+      <div class="space-y-4">
+
+        <div class="glass rounded-3xl p-4 flex items-center gap-4 hover-scale cursor-pointer">
+          <img src="https://i.pravatar.cc/100?img=45" class="w-16 h-16 rounded-2xl" />
+
+          <div>
+            <p class="font-bold">@sami_skillz</p>
+            <p class="text-sm text-neutral-400">Freestyle Football</p>
+          </div>
+        </div>
+
+        <div class="glass rounded-3xl p-4 flex items-center gap-4 hover-scale cursor-pointer">
+          <img src="https://i.pravatar.cc/100?img=32" class="w-16 h-16 rounded-2xl" />
+
+          <div>
+            <p class="font-bold">@urbanqueen</p>
+            <p class="text-sm text-neutral-400">Basketball Creator</p>
+          </div>
+        </div>
+
+        <div class="glass rounded-3xl p-4 flex items-center gap-4 hover-scale cursor-pointer">
+          <img src="https://i.pravatar.cc/100?img=15" class="w-16 h-16 rounded-2xl" />
+
+          <div>
+            <p class="font-bold">@speedrunner</p>
+            <p class="text-sm text-neutral-400">Athletics</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </aside>
+</div>
+
+<script async src="https://www.tiktok.com/embed.js"></script>
 
 </body>
 </html>
